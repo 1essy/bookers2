@@ -1,0 +1,30 @@
+ <div class="container">
+   <div class="row">
+     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h1>Editing Book</h1>
+        <% if @book.errors.any? %>
+          <%= @book.errors.count %>errors
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+        <% end %>
+        <p><%= flash[:notice] %></p>
+        <%= form_with model: @book, url: update_book_path(@book.id), method: :patch do |f| %>
+
+      	<%= f.label :Title %><br/>
+      	<%= f.text_field :title %>
+
+      	<br><%= f.label :Body %><br/>
+      	<%= f.text_area :body %>
+
+      	<br><%= f.submit 'Update Book', class: "btn btn-success" %></br>
+      	 <%= link_to "Show", book_path(@book.id) %>
+        |
+        <%= link_to "Back", "/books" %>
+
+      <% end %>
+      </div>
+    </div>
+</div>
